@@ -3,7 +3,7 @@
 > ## Homepage
 
 * Homepage Before Set username:
-<img src="screenshots/homeBeforeSetName.png" alt="Homepage" width="200"/>
+<img src="screenshots/homeBeforeSetName.png" alt="Homepage" width="400"/>
 
 ![Homepage](screenshots/homeBeforeSetName.png)
 
