@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goToAllTaskActivity);
         });
 
-        // Go to sittings activity
-        findViewById(R.id.imageViewSittings).setOnClickListener(view -> {
+        // Go to settings activity
+        findViewById(R.id.imageViewSettings).setOnClickListener(view -> {
             Intent goToSittingsActivity = new Intent(MainActivity.this, Settings.class);
             startActivity(goToSittingsActivity);
         });
