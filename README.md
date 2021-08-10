@@ -12,11 +12,9 @@
 >> ## Setting page
 
 * Settings Before Set username:
-
 <img src="screenshots/settingBeforeSave.png" alt="settingBeforeSave" width="300"/>
 
 * Settings After Set username:
-
   <img src="screenshots/settingAfterSave.png" alt="settingAfterSave" width="300"/>
 
 >> ## Add a Task page
