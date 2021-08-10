@@ -3,6 +3,7 @@ package com.example.taskmaster;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,5 +23,17 @@ public class MainActivity extends AppCompatActivity {
             Intent goToAllTaskActivity = new Intent(MainActivity.this, AllTasks.class);
             startActivity(goToAllTaskActivity);
         });
+
+        // Go to sittings activity
+        findViewById(R.id.imageViewSittings).setOnClickListener(view -> {
+            Intent goToSittingsActivity = new Intent(MainActivity.this,Settings.class);
+            startActivity(goToSittingsActivity);
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 }
