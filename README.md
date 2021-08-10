@@ -27,7 +27,7 @@
 
 
 
-> ## All tasks page
+>> ## All tasks page
 
 <img src="screenshots/4.png" alt="All tasks page" width="300"/>
 
