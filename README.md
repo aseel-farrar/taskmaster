@@ -2,19 +2,19 @@
 
 > > ## Homepage
 
-  * Homepage Before Set username:
-    <img src="screenshots/homeBeforeSetName.png" alt="Homepage" width="300"/>
+* Homepage Before Set username:
+  <img src="screenshots/homeBeforeSetName.png" alt="Homepage" width="300"/>
   
-  * Homepage After Set username:
-    <img src="screenshots/homeAfterSetName.png" alt="Homepage" width="300"/>
+ * Homepage After Set username:
+  <img src="screenshots/homeAfterSetName.png" alt="Homepage" width="300"/>
 
 > > ## Setting page
   
-  * Settings Before Set username:
-    <img src="screenshots/settingBeforeSave.png" alt="settingBeforeSave" width="300"/>
+ * Settings Before Set username:
+   <img src="screenshots/settingBeforeSave.png" alt="settingBeforeSave" width="300"/>
   
-  * Settings After Set username:
-    <img src="screenshots/settingAfterSave.png" alt="settingAfterSave" width="300"/>
+ * Settings After Set username:
+   <img src="screenshots/settingAfterSave.png" alt="settingAfterSave" width="300"/>
 
 > > ## Add a Task page
 
