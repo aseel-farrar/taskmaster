@@ -21,42 +21,103 @@
 
     <Button
         android:id="@+id/buttonAddTaskActivity"
-        android:layout_width="129dp"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="1dp"
         android:layout_marginBottom="50dp"
         android:text="ADD TASK"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAllTasks"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mockView2" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonCode" />
 
     <Button
         android:id="@+id/buttonAllTasks"
-        android:layout_width="129dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="50dp"
         android:text="ALL TASKS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toEndOf="@+id/buttonAddTaskActivity"
-        app:layout_constraintTop_toBottomOf="@+id/mockView2"
-        app:layout_constraintVertical_bias="0.504" />
+        app:layout_constraintTop_toTopOf="@+id/buttonAddTaskActivity"
+        app:layout_constraintVertical_bias="0.9" />
 
     <android.support.constraint.utils.MockView
         android:id="@+id/mockView2"
-        android:layout_width="311dp"
-        android:layout_height="439dp"
+        android:layout_width="329dp"
+        android:layout_height="288dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTasks"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMyTasks" />
+
+    <ImageView
+        android:id="@+id/imageViewSettings"
+        android:layout_width="61dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_cogwheels" />
+
+    <Button
+        android:id="@+id/buttonCode"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="Code"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAllTasks"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSport"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonClean"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="20dp"
+        android:text="clean"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAllTasks"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonSport" />
+
+    <Button
+        android:id="@+id/buttonSport"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="20dp"
+        android:text="Sport"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAllTasks"
+        app:layout_constraintEnd_toStartOf="@+id/buttonClean"
+        app:layout_constraintStart_toEndOf="@+id/buttonCode" />
+
+    <TextView
+        android:id="@+id/textViewTasks"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:text="Set Your Username in Settings"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSport"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mockView2" />
 
 
 </android.support.constraint.ConstraintLayout>
