@@ -1,7 +1,8 @@
 > # Task Master
 
 > > ## Homepage
-> 
+>
+
 * Homepage with RecyclerView:
   <img src="screenshots/homePageRecyclerView.PNG" alt="HomepageRecyclerView" width="300"/>
 
@@ -21,15 +22,16 @@
   <img src="screenshots/settingBeforeSave.png" alt="settingBeforeSave" width="300"/>
 
 * Settings After Set username:
-  
+
   <img src="screenshots/settingAfterSave.png" alt="settingAfterSave" width="300"/>
 
 > > ## Add a Task page
 
-  <img src="screenshots/2.png" alt="Add a Task page" width="300"/>
+  <img src="screenshots/add1.png" alt="Add a Task page" width="300"/>
 
-  <img src="screenshots/3.png" alt="Add a Task successfully" width="300"/>
+  <img src="screenshots/add2.png" alt="Add a Task page" width="300"/>
 
+  <img src="screenshots/add3.png" alt="Add a Task page" width="300"/>
 
 
 > > ## All tasks page

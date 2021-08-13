@@ -1,8 +1,22 @@
 package com.example.taskmaster.Models;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity
 public class Task {
+
+    @PrimaryKey(autoGenerate = true)
+    private long id;
+
+    @ColumnInfo(name = "task_name")
     private String taskTitle;
+
+    @ColumnInfo(name = "task_body")
     private String taskBody;
+
+    @ColumnInfo(name = "task_state")
     private String taskState;
 
     public Task(String taskTitle, String taskBody, String taskState) {
@@ -33,5 +47,13 @@ public class Task {
 
     public void setTaskState(String taskState) {
         this.taskState = taskState;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

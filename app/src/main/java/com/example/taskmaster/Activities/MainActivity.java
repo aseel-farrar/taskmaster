@@ -7,14 +7,17 @@ import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.os.Bundle;
-import android.widget.Button;
+
 import android.widget.TextView;
 
 import com.example.taskmaster.Adaptesrs.TaskAdapter;
 import com.example.taskmaster.Models.Task;
 import com.example.taskmaster.R;
+import com.example.taskmaster.infrastructure.AppDatabase;
+import com.example.taskmaster.infrastructure.TaskDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,65 +27,21 @@ public class MainActivity extends AppCompatActivity {
     private List<Task> tasks;
     private TaskAdapter adapter;
 
+    private RecyclerView taskRecyclerView;
+    private LinearLayoutManager linearLayoutManager;
+
+    private TaskDao taskDao;
+    private AppDatabase database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // RecycleView code
-        RecyclerView foodRecyclerView = findViewById(R.id.list);
-        tasks = new ArrayList<>();
-
-        tasks.add(new Task(
-                "Code",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "new"));
-
-        tasks.add(new Task(
-                "Clean",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "assigned"));
-
-        tasks.add(new Task(
-                "Shopping",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "new"));
-
-        tasks.add(new Task(
-                "Sport",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "in progress"));
-
-        tasks.add(new Task(
-                "Read",
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                "complete"));
-
-
-        adapter = new TaskAdapter(tasks, new TaskAdapter.OnTaskItemClickListener() {
-            @Override
-            public void onItemClicked(int position) {
-                Intent goToDetailsIntent = new Intent(getApplicationContext(), Details.class);
-                goToDetailsIntent.putExtra("taskTitle", tasks.get(position).getTaskTitle());
-                goToDetailsIntent.putExtra("taskBody", tasks.get(position).getTaskBody());
-                goToDetailsIntent.putExtra("taskState", tasks.get(position).getTaskState());
-                startActivity(goToDetailsIntent);
-            }
-
-            @Override
-            public void onDeleteItem(int position) {
-                tasks.remove(position);
-                listItemDeleted();
-            }
-        });
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
-                this,
-                LinearLayoutManager.VERTICAL,
-                false);
-
-        foodRecyclerView.setLayoutManager(linearLayoutManager);
-        foodRecyclerView.setAdapter(adapter);
+        // Room
+        database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
+                .allowMainThreadQueries().build();
+        taskDao = database.taskDao();
 
         // Go to add task activity
         findViewById(R.id.buttonAddTaskActivity).setOnClickListener(view -> {
@@ -101,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
             Intent goToSittingsActivity = new Intent(MainActivity.this, Settings.class);
             startActivity(goToSittingsActivity);
         });
-
     }
 
     private void listItemDeleted() {
@@ -129,5 +87,39 @@ public class MainActivity extends AppCompatActivity {
         if (!username.equals("")) {
             ((TextView) findViewById(R.id.textViewTasks)).setText(username + "'s Tasks");
         }
+
+        // RecycleView
+        tasks = taskDao.findAll();
+        if (tasks == null) {
+            tasks = new ArrayList<>();
+        }
+
+       taskRecyclerView = findViewById(R.id.list);
+        adapter = new TaskAdapter(tasks, new TaskAdapter.OnTaskItemClickListener() {
+            @Override
+            public void onItemClicked(int position) {
+                Intent goToDetailsIntent = new Intent(getApplicationContext(), Details.class);
+                goToDetailsIntent.putExtra("taskTitle", tasks.get(position).getTaskTitle());
+                goToDetailsIntent.putExtra("taskBody", tasks.get(position).getTaskBody());
+                goToDetailsIntent.putExtra("taskState", tasks.get(position).getTaskState());
+                startActivity(goToDetailsIntent);
+            }
+
+            @Override
+            public void onDeleteItem(int position) {
+                //delete from database
+                taskDao.deleteTask(tasks.get(position));
+
+                //delete from tasks list
+                tasks.remove(position);
+                listItemDeleted();
+            }
+        });
+        linearLayoutManager = new LinearLayoutManager(
+                this,
+                LinearLayoutManager.VERTICAL,
+                false);
+        taskRecyclerView.setLayoutManager(linearLayoutManager);
+        taskRecyclerView.setAdapter(adapter);
     }
 }
