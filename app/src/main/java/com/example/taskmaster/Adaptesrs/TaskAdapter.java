@@ -19,9 +19,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
 
     private final List<Task> tasks;
     private OnTaskItemClickListener listener;
-
-    private static final String TAG = "Task Adapter";
-
+    
 
     public interface OnTaskItemClickListener {
         void onItemClicked(int position);
@@ -46,7 +44,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
         holder.taskName.setText(task.getTaskTitle());
         holder.taskState.setText(task.getTaskState());
 
-        Log.i(TAG, "onBindViewHolder: Called for position" + position);
     }
 
     @Override
