@@ -1,11 +1,10 @@
 > # Task Master
 
 > > ## Homepage
->
 
 * Homepage with RecyclerView:
-  <img src="screenshots/homePageRecyclerView.PNG" alt="HomepageRecyclerView" width="300"/>
 
+  <img src="screenshots/homePageRecyclerView.PNG" alt="HomepageRecyclerView" width="300"/>
 
 * Homepage Before Set username:
 
