@@ -3,9 +3,11 @@ package com.example.taskmaster.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -47,6 +49,14 @@ public class AddTask extends AppCompatActivity {
 
             Toast toast = Toast.makeText(this, "submitted!", Toast.LENGTH_LONG);
             toast.show();
+        });
+
+        //Go Home!
+        ImageView goHomeImage = findViewById(R.id.fromAddTaskActivityToHome);
+        goHomeImage.setOnClickListener(v -> {
+            // back button pressed
+            Intent goHome = new Intent(AddTask.this,MainActivity.class);
+            startActivity(goHome);
         });
     }
 }

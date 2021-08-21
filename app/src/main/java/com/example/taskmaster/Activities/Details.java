@@ -3,6 +3,7 @@ package com.example.taskmaster.Activities;
 import android.content.Intent;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.taskmaster.R;
@@ -24,5 +25,14 @@ public class Details extends AppCompatActivity {
         ((TextView)findViewById(R.id.textViewDetailsTaskTitle)).setText(taskName);
         ((TextView)findViewById(R.id.taskBody)).setText(taskBody);
         ((TextView)findViewById(R.id.taskState)).setText(taskState);
+
+        //Go Home!
+        ImageView goHomeImage = findViewById(R.id.fromTaskDetailsActivityToHome);
+        goHomeImage.setOnClickListener(v -> {
+            // back button pressed
+            Intent goHome = new Intent(Details.this,MainActivity.class);
+            startActivity(goHome);
+        });
+
     }
 }
