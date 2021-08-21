@@ -1,10 +1,12 @@
 package com.example.taskmaster.Activities;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.taskmaster.R;
@@ -29,6 +31,14 @@ public class Settings extends AppCompatActivity {
 
             Toast toast = Toast.makeText(this, "saved!", Toast.LENGTH_LONG);
             toast.show();
+        });
+
+        //Go Home!
+        ImageView goHomeImage = findViewById(R.id.fromSettingsActivityToHome);
+        goHomeImage.setOnClickListener(v -> {
+            // back button pressed
+            Intent goHome = new Intent(Settings.this,MainActivity.class);
+            startActivity(goHome);
         });
     }
 }
