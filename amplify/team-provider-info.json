@@ -1,0 +1,15 @@
+{
+  "dynomodb": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-taskmaster-dynomodb-51302-authRole",
+      "UnauthRoleArn": "arn:aws:iam::590459780058:role/amplify-taskmaster-dynomodb-51302-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::590459780058:role/amplify-taskmaster-dynomodb-51302-authRole",
+      "Region": "us-west-2",
+      "DeploymentBucketName": "amplify-taskmaster-dynomodb-51302-deployment",
+      "UnauthRoleName": "amplify-taskmaster-dynomodb-51302-unauthRole",
+      "StackName": "amplify-taskmaster-dynomodb-51302",
+      "StackId": "arn:aws:cloudformation:us-west-2:590459780058:stack/amplify-taskmaster-dynomodb-51302/d43f3580-0480-11ec-b311-0a19cd36b067",
+      "AmplifyAppId": "d2dy38a0n4y1sg"
+    }
+  }
+}
