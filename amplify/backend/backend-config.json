@@ -10,7 +10,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 77,
-              "description": "dynamoDB"
+              "description": "devaseel"
             }
           }
         }

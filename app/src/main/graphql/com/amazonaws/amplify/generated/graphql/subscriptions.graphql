@@ -1,10 +1,105 @@
 # this is an auto generated file. This will be overwritten
+subscription OnCreateTeam {
+  onCreateTeam {
+    id
+    taskName
+    tasks {
+      items {
+        id
+        teamId
+        taskTitle
+        taskBody
+        taskState
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateTeam {
+  onUpdateTeam {
+    id
+    taskName
+    tasks {
+      items {
+        id
+        teamId
+        taskTitle
+        taskBody
+        taskState
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteTeam {
+  onDeleteTeam {
+    id
+    taskName
+    tasks {
+      items {
+        id
+        teamId
+        taskTitle
+        taskBody
+        taskState
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+    _version
+    _deleted
+    _lastChangedAt
+    createdAt
+    updatedAt
+  }
+}
 subscription OnCreateTask {
   onCreateTask {
     id
+    teamId
     taskTitle
     taskBody
     taskState
+    team {
+      id
+      taskName
+      tasks {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -15,9 +110,23 @@ subscription OnCreateTask {
 subscription OnUpdateTask {
   onUpdateTask {
     id
+    teamId
     taskTitle
     taskBody
     taskState
+    team {
+      id
+      taskName
+      tasks {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
     _version
     _deleted
     _lastChangedAt
@@ -28,9 +137,23 @@ subscription OnUpdateTask {
 subscription OnDeleteTask {
   onDeleteTask {
     id
+    teamId
     taskTitle
     taskBody
     taskState
+    team {
+      id
+      taskName
+      tasks {
+        nextToken
+        startedAt
+      }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
     _version
     _deleted
     _lastChangedAt

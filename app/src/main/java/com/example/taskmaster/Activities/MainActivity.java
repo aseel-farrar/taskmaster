@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         tasks = new ArrayList<>();
-        getExpenseDataFromAPI();
+        getTasksDataFromAPI();
         Log.i(TAG, "onResume: tasks " + tasks);
 
         // RecycleView
@@ -186,7 +186,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void getExpenseDataFromAPI() {
+    private void getTasksDataFromAPI() {
         Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
                 response -> {
                     for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
