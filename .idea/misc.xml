@@ -18,9 +18,20 @@
         <entry key="..\:/Users/aseel/Desktop/repos/taskmaster/app/src/main/res/layout/activity_details.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aseel/Desktop/repos/taskmaster/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/aseel/Desktop/repos/taskmaster/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aseel/Desktop/test/taskmaster/app/src/main/res/layout/activity_add_task.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aseel/Desktop/test/taskmaster/app/src/main/res/layout/activity_main.xml" value="0.21829710144927536" />
+        <entry key="..\:/Users/aseel/Desktop/test/taskmaster/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/aseel/Desktop/test/taskmaster/app/src/main/res/layout/activity_team_tasks.xml" value="0.2" />
       </map>
     </option>
   </component>
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
+  </component>
 </project>

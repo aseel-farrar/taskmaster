@@ -13,7 +13,7 @@ query SyncTeams(
   ) {
     items {
       id
-      taskName
+      teamName
       tasks {
         nextToken
         startedAt
@@ -31,7 +31,7 @@ query SyncTeams(
 query GetTeam($id: ID!) {
   getTeam(id: $id) {
     id
-    taskName
+    teamName
     tasks {
       items {
         id
@@ -63,7 +63,7 @@ query ListTeams(
   listTeams(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      taskName
+      teamName
       tasks {
         nextToken
         startedAt
@@ -98,7 +98,7 @@ query SyncTasks(
       taskState
       team {
         id
-        taskName
+        teamName
         _version
         _deleted
         _lastChangedAt
@@ -124,7 +124,7 @@ query GetTask($id: ID!) {
     taskState
     team {
       id
-      taskName
+      teamName
       tasks {
         nextToken
         startedAt
@@ -156,7 +156,7 @@ query ListTasks(
       taskState
       team {
         id
-        taskName
+        teamName
         _version
         _deleted
         _lastChangedAt

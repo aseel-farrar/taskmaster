@@ -11,8 +11,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
         android:text="My Tasks"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTasks"
         app:layout_constraintHorizontal_bias="0.179"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -20,45 +22,59 @@
 
     <Button
         android:id="@+id/buttonAddTaskActivity"
-        android:layout_width="0dp"
+        android:layout_width="120dp"
         android:layout_height="60dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="30dp"
         android:text="ADD TASK"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAllTasks"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonTeamTasks"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/list" />
 
     <Button
         android:id="@+id/buttonAllTasks"
-        android:layout_width="0dp"
+        android:layout_width="120dp"
         android:layout_height="60dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="30dp"
         android:text="ALL TASKS"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonTeamTasks" />
+
+    <Button
+        android:id="@+id/buttonTeamTasks"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="30dp"
+        android:text="TEAM TASKS"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonAllTasks"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toEndOf="@+id/buttonAddTaskActivity"
-        app:layout_constraintTop_toTopOf="@+id/buttonAddTaskActivity"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toBottomOf="@+id/list" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
         android:layout_width="332dp"
-        android:layout_height="412dp"
+        android:layout_height="450dp"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="24dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/buttonAllTasks"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTasks" />
 
     <ImageView
         android:id="@+id/imageViewSettings"
@@ -75,13 +91,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="40dp"
+        android:layout_marginBottom="5dp"
         android:text="Set Your Username in Settings"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewMyTasks" />
-
-
+y
 </androidx.constraintlayout.widget.ConstraintLayout>
