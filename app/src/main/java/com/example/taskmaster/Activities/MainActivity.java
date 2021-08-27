@@ -24,6 +24,7 @@ import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Team;
 import com.example.taskmaster.Adaptesrs.TaskAdapter;
 import com.example.taskmaster.Models.Task;
 import com.example.taskmaster.R;
@@ -63,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Amplify
-            configureAmplify();
+        configureAmplify();
+
 
         // Room
         database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
@@ -88,6 +90,18 @@ public class MainActivity extends AppCompatActivity {
             Intent goToSittingsActivity = new Intent(MainActivity.this, Settings.class);
             startActivity(goToSittingsActivity);
         });
+
+        // Go to Team tasks activity
+        findViewById(R.id.buttonTeamTasks).setOnClickListener(view -> {
+            Intent goTeamTasksActivity = new Intent(MainActivity.this, TeamTasks.class);
+            startActivity(goTeamTasksActivity);
+        });
+
+        // save Teams to API
+        saveTeamToApi("Team A");
+        saveTeamToApi("Team B");
+        saveTeamToApi("Team C");
+
     }
 
     private void listItemDeleted() {
@@ -112,12 +126,19 @@ public class MainActivity extends AppCompatActivity {
         //create sharedPreference
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String username = sharedPreferences.getString("username", "");
+        String teamName = sharedPreferences.getString("teamName", "");
+
         if (!username.equals("")) {
             ((TextView) findViewById(R.id.textViewTasks)).setText(username + "'s Tasks");
         }
 
         tasks = new ArrayList<>();
-        getTasksDataFromAPI();
+        if (teamName.equals("")) {
+            getTasksDataFromAPI();
+        } else {
+            getTeamTasksFromAPI(teamName);
+        }
+
         Log.i(TAG, "onResume: tasks " + tasks);
 
         // RecycleView
@@ -139,18 +160,21 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onDeleteItem(int position) {
-                //  delete from Amplify API
-                com.amplifyframework.datastore.generated.model.Task task= com.amplifyframework.datastore.generated.model.Task.builder()
+
+                Team team = Team.builder().teamName("Team A").build();
+
+                // todo: delete from Amplify API
+                com.amplifyframework.datastore.generated.model.Task task = com.amplifyframework.datastore.generated.model.Task.builder()
                         .taskTitle(tasks.get(position).getTaskTitle())
                         .taskBody(tasks.get(position).getTaskBody())
                         .taskState(tasks.get(position).getTaskState())
+                        .team(team)
                         .build();
 
                 Amplify.API.mutate(ModelMutation.delete(task),
-                        response -> Log.i(TAG, "item deleted from API:"+ task.getTaskTitle()),
+                        response -> Log.i(TAG, "item deleted from API:" + task.getTaskTitle()),
                         error -> Log.e(TAG, "Delete failed", error)
                 );
-
 
 
                 //delete from database
@@ -159,7 +183,6 @@ public class MainActivity extends AppCompatActivity {
                 //delete from tasks list
                 tasks.remove(position);
                 listItemDeleted();
-
 
 
                 // delete from any local storage/cache if any
@@ -190,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
                 response -> {
                     for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
-                        tasks.add( new Task(task.getTaskTitle(), task.getTaskBody(), task.getTaskState()));
+                        tasks.add(new Task(task.getTaskTitle(), task.getTaskBody(), task.getTaskState()));
                         Log.i(TAG, "onCreate: the Tasks DynamoDB are => " + task.getTaskTitle());
                     }
                     handler.sendEmptyMessage(1);
@@ -203,4 +226,43 @@ public class MainActivity extends AppCompatActivity {
     private void notifyDataSetChanged() {
         adapter.notifyDataSetChanged();
     }
+
+
+    public void saveTeamToApi(String teamName) {
+        Team team = Team.builder().teamName(teamName).build();
+
+        Amplify.API.query(ModelQuery.list(Team.class, Team.TEAM_NAME.contains(teamName)),
+                response -> {
+                    List<Team> teams = (List<Team>) response.getData().getItems();
+
+                    if (teams.isEmpty()) {
+                        Amplify.API.mutate(ModelMutation.create(team),
+                                success -> Log.i(TAG, "Saved Team => " + team.getTeamName()),
+                                error -> Log.e(TAG, "Could not save Team to API => ", error));
+                    }
+                },
+                error -> {
+                    Log.e(TAG, "Failed to get Team from DynamoDB => " + error.toString());
+                }
+        );
+
+    }
+
+    private void getTeamTasksFromAPI(String teamName) {
+        Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
+                response -> {
+                    for (com.amplifyframework.datastore.generated.model.Task task : response.getData()) {
+
+                        if ((task.getTeam().getTeamName()).equals(teamName)) {
+                            tasks.add(new Task(task.getTaskTitle(), task.getTaskBody(), task.getTaskState()));
+                            Log.i(TAG, "onCreate: the Tasks DynamoDB are => " + task.getTaskTitle());
+                            Log.i(TAG, "onCreate: the team DynamoDB are => " + task.getTeam().getTeamName());
+                        }
+                    }
+                    handler.sendEmptyMessage(1);
+                },
+                error -> Log.e(TAG, "onCreate: Failed to get Tasks from DynamoDB => " + error.toString())
+        );
+    }
+
 }

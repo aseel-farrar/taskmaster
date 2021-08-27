@@ -24,6 +24,11 @@
 
   <img src="screenshots/settingAfterSave.png" alt="settingAfterSave" width="300"/>
 
+* Settings After Adding the ability to choose team:
+  
+  <img src="screenshots/settingWithTeams.PNG" alt="Settings After Adding the ability to choose team" width="300"/>
+
+
 > > ## Add a Task page
 
   <img src="screenshots/add1.png" alt="Add a Task page" width="300"/>
@@ -32,10 +37,14 @@
 
   <img src="screenshots/add3.png" alt="Add a Task page" width="300"/>
 
+* Add a Task page After Adding the ability to choose team:
+  <img src="screenshots/addTaskWithTeam.PNG" alt="Team Tasks page" width="300"/>
+
 
 > > ## All tasks page
 
   <img src="screenshots/4.png" alt="All tasks page" width="300"/>
+
 
 > > ## Details page
 
@@ -45,3 +54,6 @@
 
   <img src="screenshots/details3.png" alt="Details page" width="300"/>
 
+> > ## Team Tasks page
+
+  <img src="screenshots/teamTasksActivity.PNG" alt="Team Tasks page" width="300"/>

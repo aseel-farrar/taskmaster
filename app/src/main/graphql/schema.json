@@ -284,7 +284,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "taskName",
+                        "name": "teamName",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -905,7 +905,7 @@
                         "deprecationReason": null
                     },
                     {
-                        "name": "taskName",
+                        "name": "teamName",
                         "description": null,
                         "args": [],
                         "type": {
@@ -1671,7 +1671,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "taskName",
+                        "name": "teamName",
                         "description": null,
                         "type": {
                             "kind": "NON_NULL",
@@ -1706,7 +1706,7 @@
                 "fields": null,
                 "inputFields": [
                     {
-                        "name": "taskName",
+                        "name": "teamName",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -1779,7 +1779,7 @@
                         "defaultValue": null
                     },
                     {
-                        "name": "taskName",
+                        "name": "teamName",
                         "description": null,
                         "type": {
                             "kind": "SCALAR",

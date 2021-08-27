@@ -22,9 +22,9 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Teams")
 public final class Team implements Model {
   public static final QueryField ID = field("Team", "id");
-  public static final QueryField TASK_NAME = field("Team", "taskName");
+  public static final QueryField TEAM_NAME = field("Team", "teamName");
   private final @ModelField(targetType="ID", isRequired = true) String id;
-  private final @ModelField(targetType="String", isRequired = true) String taskName;
+  private final @ModelField(targetType="String", isRequired = true) String teamName;
   private final @ModelField(targetType="Task") @HasMany(associatedWith = "team", type = Task.class) List<Task> tasks = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -32,8 +32,8 @@ public final class Team implements Model {
       return id;
   }
   
-  public String getTaskName() {
-      return taskName;
+  public String getTeamName() {
+      return teamName;
   }
   
   public List<Task> getTasks() {
@@ -48,9 +48,9 @@ public final class Team implements Model {
       return updatedAt;
   }
   
-  private Team(String id, String taskName) {
+  public Team(String id, String teamName) {
     this.id = id;
-    this.taskName = taskName;
+    this.teamName = teamName;
   }
   
   @Override
@@ -62,7 +62,7 @@ public final class Team implements Model {
       } else {
       Team team = (Team) obj;
       return ObjectsCompat.equals(getId(), team.getId()) &&
-              ObjectsCompat.equals(getTaskName(), team.getTaskName()) &&
+              ObjectsCompat.equals(getTeamName(), team.getTeamName()) &&
               ObjectsCompat.equals(getCreatedAt(), team.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), team.getUpdatedAt());
       }
@@ -72,7 +72,7 @@ public final class Team implements Model {
    public int hashCode() {
     return new StringBuilder()
       .append(getId())
-      .append(getTaskName())
+      .append(getTeamName())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -84,14 +84,14 @@ public final class Team implements Model {
     return new StringBuilder()
       .append("Team {")
       .append("id=" + String.valueOf(getId()) + ", ")
-      .append("taskName=" + String.valueOf(getTaskName()) + ", ")
+      .append("teamName=" + String.valueOf(getTeamName()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
       .toString();
   }
   
-  public static TaskNameStep builder() {
+  public static TeamNameStep builder() {
       return new Builder();
   }
   
@@ -122,10 +122,10 @@ public final class Team implements Model {
   
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
-      taskName);
+      teamName);
   }
-  public interface TaskNameStep {
-    BuildStep taskName(String taskName);
+  public interface TeamNameStep {
+    BuildStep teamName(String teamName);
   }
   
 
@@ -135,22 +135,22 @@ public final class Team implements Model {
   }
   
 
-  public static class Builder implements TaskNameStep, BuildStep {
+  public static class Builder implements TeamNameStep, BuildStep {
     private String id;
-    private String taskName;
+    private String teamName;
     @Override
      public Team build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
         
         return new Team(
           id,
-          taskName);
+          teamName);
     }
     
     @Override
-     public BuildStep taskName(String taskName) {
-        Objects.requireNonNull(taskName);
-        this.taskName = taskName;
+     public BuildStep teamName(String teamName) {
+        Objects.requireNonNull(teamName);
+        this.teamName = teamName;
         return this;
     }
     
@@ -166,14 +166,14 @@ public final class Team implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String taskName) {
+    private CopyOfBuilder(String id, String teamName) {
       super.id(id);
-      super.taskName(taskName);
+      super.teamName(teamName);
     }
     
     @Override
-     public CopyOfBuilder taskName(String taskName) {
-      return (CopyOfBuilder) super.taskName(taskName);
+     public CopyOfBuilder teamName(String teamName) {
+      return (CopyOfBuilder) super.teamName(teamName);
     }
   }
   

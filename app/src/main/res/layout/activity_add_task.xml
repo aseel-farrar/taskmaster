@@ -52,16 +52,14 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="50dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="30dp"
         android:text="ADD TASK"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/textViewTotalTasksLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextTaskTitle"
@@ -115,33 +113,28 @@
         android:layout_width="0dp"
         android:layout_height="43dp"
         android:layout_marginStart="1dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="30dp"
         android:text="0"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintBottom_toBottomOf="@+id/textViewTotalTasksLabel"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textViewTotalTasksLabel"
-        app:layout_constraintTop_toTopOf="@+id/textViewTotalTasksLabel"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonAddTask" />
 
     <TextView
         android:id="@+id/textViewTotalTasksLabel"
         android:layout_width="0dp"
         android:layout_height="43dp"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
         android:layout_marginBottom="30dp"
         android:text="Total tasks: "
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textViewTotalTasks"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddTask" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -162,18 +155,45 @@
 
     <TextView
         android:id="@+id/textViewState"
-        android:layout_width="42dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="56dp"
         android:text="State"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddTask"
         app:layout_constraintEnd_toStartOf="@+id/spinner"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTaskBody"
-        app:layout_constraintVertical_bias="0.159" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTaskBody" />
 
+    <TextView
+        android:id="@+id/textViewTeam"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginBottom="35dp"
+        android:text="Team"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+
+        app:layout_constraintBottom_toTopOf="@+id/buttonAddTask"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewState" />
+
+    <Spinner
+        android:id="@+id/spinnerTeam"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:background="@android:drawable/btn_dropdown"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewTeam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewTeam"
+        app:layout_constraintTop_toTopOf="@+id/textViewTeam"
+        app:layout_constraintVertical_bias="0.58" />
 </androidx.constraintlayout.widget.ConstraintLayout>
