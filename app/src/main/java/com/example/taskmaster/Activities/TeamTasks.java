@@ -15,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -24,8 +23,6 @@ import com.amplifyframework.datastore.generated.model.Team;
 import com.example.taskmaster.Adaptesrs.TaskAdapter;
 import com.example.taskmaster.Models.Task;
 import com.example.taskmaster.R;
-import com.example.taskmaster.infrastructure.AppDatabase;
-import com.example.taskmaster.infrastructure.TaskDao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +43,9 @@ public class TeamTasks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_team_tasks);
+        setTitle("Team Tasks");
+
+
         handler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message message) {
