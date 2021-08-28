@@ -1,8 +1,5 @@
 package com.example.taskmaster.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +8,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -23,24 +23,23 @@ import com.example.taskmaster.infrastructure.TaskDao;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class AddTask extends AppCompatActivity {
 
     private static final String TAG = "AddTaskActivity";
 
     private TaskDao taskDao;
-    private AppDatabase database;
 
     private String teamId = "";
 
-    private List<Team> teams = new ArrayList<>();
+    private final List<Team> teams = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        setTitle("Add Task");
         getAllTeamsDataFromAPI();
 
         // states spinner
@@ -58,7 +57,7 @@ public class AddTask extends AppCompatActivity {
 
 
         // Room
-        database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
+        AppDatabase database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
                 .allowMainThreadQueries().build();
         taskDao = database.taskDao();
 
@@ -133,19 +132,9 @@ public class AddTask extends AppCompatActivity {
     public void getTeamFromApi(String teamName) {
         Amplify.API.query(ModelQuery.list(Team.class, Team.TEAM_NAME.contains(teamName)),
                 response -> {
-//                    String resTeamId;
-//                    Log.i(TAG, "onCreate: the Teams DynamoDB are => " + response.getData().getItems());
                     List<Team> teams = (List<Team>) response.getData().getItems();
-
-//                    if (teams.isEmpty()) {
-//                        saveTeamToApi(teamName);
-//                        getTeamFromApi(teamName);
-////                        Log.i(TAG, "get NOT exist team id => " + teamId);
-//                    } else {
                     Log.i(TAG, "get exist team id => " + teams.get(0).getId());
                     teamId = teams.get(0).getId();
-//                    }
-
                 },
                 error -> {
                     Log.e(TAG, "onCreate: Failed to get Teams from DynamoDB => " + error.toString());
@@ -159,11 +148,6 @@ public class AddTask extends AppCompatActivity {
     public void saveTeamToApi(String teamName) {
         Team team = Team.builder().teamName(teamName).build();
 
-//        Amplify.API.mutate(ModelMutation.create(team),
-//                success -> Log.i(TAG, "Saved item: " + team.getTeamName()),
-//                error -> Log.e(TAG, "Could not save item to API", error));
-//
-//
         Amplify.API.query(ModelQuery.list(Team.class, Team.TEAM_NAME.contains(teamName)),
                 response -> {
                     List<Team> teams = (List<Team>) response.getData().getItems();
@@ -174,9 +158,7 @@ public class AddTask extends AppCompatActivity {
                                 error -> Log.e(TAG, "Could not save item to API", error));
                     }
                 },
-                error -> {
-                    Log.e(TAG, "onCreate: Failed to get Teams from DynamoDB => " + error.toString());
-                }
+                error -> Log.e(TAG, "onCreate: Failed to get Teams from DynamoDB => " + error.toString())
         );
 
     }

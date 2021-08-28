@@ -3,20 +3,16 @@ package com.example.taskmaster.Activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.preference.PreferenceManager;
+import android.util.Log;
+import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
-
-import android.os.Bundle;
-
-import android.util.Log;
-import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
@@ -42,11 +38,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Task> tasks;
     private TaskAdapter adapter;
 
-    private RecyclerView taskRecyclerView;
-    private LinearLayoutManager linearLayoutManager;
-
     private TaskDao taskDao;
-    private AppDatabase database;
 
     private Handler handler;
 
@@ -54,13 +46,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("Task Master");
 
-        handler = new Handler(new Handler.Callback() {
-            @Override
-            public boolean handleMessage(@NonNull Message message) {
-                notifyDataSetChanged();
-                return false;
-            }
+        handler = new Handler(message -> {
+            notifyDataSetChanged();
+            return false;
         });
 
         // Amplify
@@ -68,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Room
-        database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
+        AppDatabase database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
                 .allowMainThreadQueries().build();
         taskDao = database.taskDao();
 
@@ -120,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onResume() {
         super.onResume();
@@ -147,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 //            tasks = new ArrayList<>();
 //        }
 
-        taskRecyclerView = findViewById(R.id.list);
+        RecyclerView taskRecyclerView = findViewById(R.id.list);
         adapter = new TaskAdapter(tasks, new TaskAdapter.OnTaskItemClickListener() {
             @Override
             public void onItemClicked(int position) {
@@ -189,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        linearLayoutManager = new LinearLayoutManager(
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(
                 this,
                 LinearLayoutManager.VERTICAL,
                 false);
@@ -241,9 +232,7 @@ public class MainActivity extends AppCompatActivity {
                                 error -> Log.e(TAG, "Could not save Team to API => ", error));
                     }
                 },
-                error -> {
-                    Log.e(TAG, "Failed to get Team from DynamoDB => " + error.toString());
-                }
+                error -> Log.e(TAG, "Failed to get Team from DynamoDB => " + error.toString())
         );
 
     }
