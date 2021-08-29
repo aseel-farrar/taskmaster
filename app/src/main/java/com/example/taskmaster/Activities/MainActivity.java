@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,10 +15,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.amazonaws.mobile.auth.core.IdentityManager;
+import com.amazonaws.mobile.config.AWSConfiguration;
+import com.amazonaws.mobileconnectors.cognitoidentityprovider.CognitoUser;
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.api.aws.AWSApiPlugin;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Team;
@@ -53,14 +58,29 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
-        // Amplify
-        configureAmplify();
+//        // Amplify
+//        configureAmplify();
 
 
         // Room
         AppDatabase database = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "task_List")
                 .allowMainThreadQueries().build();
         taskDao = database.taskDao();
+
+
+        // save the username in the sharedPreference
+
+        Intent intent = getIntent();
+        String username = intent.getExtras().getString("username");
+
+//        getCurrentUser();
+
+//        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+//        SharedPreferences.Editor preferenceEditor = sharedPreferences.edit();
+//        preferenceEditor.putString("username", username);
+//        preferenceEditor.apply();
+
+        ((TextView) findViewById(R.id.textViewTasks)).setText(username + "'s Tasks");
 
 
         // Go to add task activity
@@ -87,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
             startActivity(goTeamTasksActivity);
         });
 
+        // Sign Out
+        findViewById(R.id.imageViewLogOut).setOnClickListener(view -> logout());
+
+
+
+
+
         // save Teams to API
         saveTeamToApi("Team A");
         saveTeamToApi("Team B");
@@ -97,7 +124,6 @@ public class MainActivity extends AppCompatActivity {
     private void listItemDeleted() {
         adapter.notifyDataSetChanged();
     }
-
 
     /**
      * function to call the details Activity for specific task Name
@@ -116,12 +142,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         //create sharedPreference
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String username = sharedPreferences.getString("username", "");
+//        String username = sharedPreferences.getString("username", "");
         String teamName = sharedPreferences.getString("teamName", "");
 
-        if (!username.equals("")) {
-            ((TextView) findViewById(R.id.textViewTasks)).setText(username + "'s Tasks");
-        }
+//        if (!username.equals("")) {
+//            ((TextView) findViewById(R.id.textViewTasks)).setText(username + "'s Tasks");
+//        }
 
         tasks = new ArrayList<>();
         if (teamName.equals("")) {
@@ -188,17 +214,18 @@ public class MainActivity extends AppCompatActivity {
         taskRecyclerView.setAdapter(adapter);
     }
 
-    private void configureAmplify() {
-        // configure Amplify plugins
-        try {
-            Amplify.addPlugin(new AWSDataStorePlugin());
-            Amplify.addPlugin(new AWSApiPlugin());
-            Amplify.configure(getApplicationContext());
-            Log.i(TAG, "onCreate: Successfully initialized Amplify plugins");
-        } catch (AmplifyException exception) {
-            Log.e(TAG, "onCreate: Failed to initialize Amplify plugins => " + exception.toString());
-        }
-    }
+//    private void configureAmplify() {
+//        // configure Amplify plugins
+//        try {
+//            Amplify.addPlugin(new AWSDataStorePlugin());
+//            Amplify.addPlugin(new AWSApiPlugin());
+//            Amplify.addPlugin(new AWSCognitoAuthPlugin());
+//            Amplify.configure(getApplicationContext());
+//            Log.i(TAG, "onCreate: Successfully initialized Amplify plugins");
+//        } catch (AmplifyException exception) {
+//            Log.e(TAG, "onCreate: Failed to initialize Amplify plugins => " + exception.toString());
+//        }
+//    }
 
     private void getTasksDataFromAPI() {
         Amplify.API.query(ModelQuery.list(com.amplifyframework.datastore.generated.model.Task.class),
@@ -217,7 +244,6 @@ public class MainActivity extends AppCompatActivity {
     private void notifyDataSetChanged() {
         adapter.notifyDataSetChanged();
     }
-
 
     public void saveTeamToApi(String teamName) {
         Team team = Team.builder().teamName(teamName).build();
@@ -254,4 +280,21 @@ public class MainActivity extends AppCompatActivity {
         );
     }
 
+    private void logout() {
+
+        Amplify.Auth.signOut(
+                () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                error -> Log.e("AuthQuickstart", error.toString())
+        );
+
+        // Clear the IdentityManager credentials
+        final IdentityManager idm = new IdentityManager(this, new AWSConfiguration(this));
+        IdentityManager.setDefaultIdentityManager(idm);
+        idm.getUnderlyingProvider().clearCredentials();
+        idm.getUnderlyingProvider().clear();
+        idm.getUnderlyingProvider().setLogins(null);
+
+        Intent goToSignIn = new Intent(MainActivity.this, SignInActivity.class);
+        startActivity(goToSignIn);
+    }
 }

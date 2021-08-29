@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Activities.TeamTasks">
 
+    <ImageView
+        android:id="@+id/imageViewLogOut"
+        android:layout_width="61dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logout" />
+
     <TextView
         android:id="@+id/textViewMyTeam"
         android:layout_width="347dp"
@@ -28,7 +38,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="40dp"
         android:layout_marginBottom="20dp"
-        android:background="@color/white"
+        android:background="@color/colorWhite"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

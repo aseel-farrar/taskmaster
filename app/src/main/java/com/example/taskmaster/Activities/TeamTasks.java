@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.amazonaws.mobile.auth.core.IdentityManager;
+import com.amazonaws.mobile.config.AWSConfiguration;
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
@@ -61,6 +63,10 @@ public class TeamTasks extends AppCompatActivity {
             Intent goHome = new Intent(TeamTasks.this, MainActivity.class);
             startActivity(goHome);
         });
+
+        // Sign Out
+        findViewById(R.id.imageViewLogOut).setOnClickListener(view -> logout());
+
 
     }
 
@@ -163,5 +169,23 @@ public class TeamTasks extends AppCompatActivity {
     @SuppressLint("NotifyDataSetChanged")
     private void notifyDataSetChanged() {
         adapter.notifyDataSetChanged();
+    }
+
+    private void logout() {
+
+        Amplify.Auth.signOut(
+                () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                error -> Log.e("AuthQuickstart", error.toString())
+        );
+
+        // Clear the IdentityManager credentials
+        final IdentityManager idm = new IdentityManager(this, new AWSConfiguration(this));
+        IdentityManager.setDefaultIdentityManager(idm);
+        idm.getUnderlyingProvider().clearCredentials();
+        idm.getUnderlyingProvider().clear();
+        idm.getUnderlyingProvider().setLogins(null);
+
+        Intent goToSignIn = new Intent(TeamTasks.this, SignInActivity.class);
+        startActivity(goToSignIn);
     }
 }
