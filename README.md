@@ -14,6 +14,25 @@
 
   <img src="screenshots/homeAfterSetName.png" alt="Homepage" width="300"/>
 
+* Homepage with sign out feature
+
+  <img src="screenshots/homeWithSignOut.PNG" alt="Homepage with sign out feature" width="300"/>
+
+
+> > ## Sign in  page
+
+  <img src="screenshots/signIn.PNG" alt="Sign in  page" width="300"/>
+
+
+> > ## Verification page
+
+  <img src="screenshots/verification.PNG" alt="Verification page" width="300"/>
+
+> > ## Sign up page
+
+  <img src="screenshots/signUp.PNG" alt="Sign up page" width="300"/>
+
+
 > > ## Setting page
 
 * Settings Before Set username:
