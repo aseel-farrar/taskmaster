@@ -10,6 +10,11 @@
       "StackName": "amplify-taskmaster-devaseel-10654",
       "StackId": "arn:aws:cloudformation:us-west-2:590459780058:stack/amplify-taskmaster-devaseel-10654/e18fcb70-05f0-11ec-83de-0a1eb8199e0b",
       "AmplifyAppId": "dpo25flc42pnh"
+    },
+    "categories": {
+      "auth": {
+        "taskmaster140380aa": {}
+      }
     }
   },
   "dynomodb": {

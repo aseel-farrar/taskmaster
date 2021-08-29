@@ -6,17 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.AllTasks">
 
-
-    <!--    <androidx.appcompat.widget.Toolbar-->
-    <!--        android:id="@+id/AllTasksToolbar"-->
-    <!--        android:layout_width="409dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        app:navigationIcon="?attr/homeAsUpIndicator"-->
-    <!--        android:background="?attr/colorPrimary"-->
-    <!--        android:minHeight="?attr/actionBarSize"-->
-    <!--        android:theme="?attr/actionBarTheme"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <ImageView
+        android:id="@+id/imageViewLogOut"
+        android:layout_width="61dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logout" />
 
     <TextView
         android:id="@+id/textViewAllTasks"
@@ -29,7 +27,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintBottom_toTopOf="@+id/mockView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.398"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
