@@ -79,7 +79,7 @@
 
 * Details page with the Downloaded file
   
-  <img src="screenshots/detailsWithDownloadedFiles.png" alt="Details page" width="300"/>
+  <img src="screenshots/detailsWithDownloadedFiles.PNG" alt="Details page" width="300"/>
 
 > > ## Team Tasks page
 
