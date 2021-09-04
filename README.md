@@ -61,6 +61,7 @@
   <img src="screenshots/addTaskWithTeam.PNG" alt="Team Tasks page" width="300"/>
 
 * Add Task Page With Upload:
+
   <img src="screenshots/addTaskWithUpload.PNG" alt="Add Task With Upload" width="300"/>
 
 > > ## All tasks page
