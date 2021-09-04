@@ -73,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String username = intent.getExtras().getString("username");
 
+//        if(intent.getCallingActivity().getClassName()== VerificationActivity.class){
+//
+//        }
+
 //        getCurrentUser();
 
 //        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());

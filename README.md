@@ -57,8 +57,11 @@
   <img src="screenshots/add3.png" alt="Add a Task page" width="300"/>
 
 * Add a Task page After Adding the ability to choose team:
+  
   <img src="screenshots/addTaskWithTeam.PNG" alt="Team Tasks page" width="300"/>
 
+* Add Task Page With Upload:
+  <img src="screenshots/addTaskWithUpload.PNG" alt="Add Task With Upload" width="300"/>
 
 > > ## All tasks page
 
@@ -72,6 +75,10 @@
   <img src="screenshots/details2.png" alt="Details page" width="300"/>
 
   <img src="screenshots/details3.png" alt="Details page" width="300"/>
+
+* Details page with the Downloaded file
+  
+  <img src="screenshots/detailsWithDownloadedFiles.png" alt="Details page" width="300"/>
 
 > > ## Team Tasks page
 

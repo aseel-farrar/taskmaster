@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.AddTask">
+
     <ImageView
         android:id="@+id/imageViewLogOut"
         android:layout_width="61dp"
@@ -14,6 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_logout" />
+
     <ImageView
         android:id="@+id/fromAddTaskActivityToHome"
         android:layout_width="61dp"
@@ -55,17 +57,29 @@
 
     <Button
         android:id="@+id/buttonAddTask"
-        android:layout_width="0dp"
+        android:layout_width="162dp"
         android:layout_height="60dp"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginBottom="30dp"
         android:text="ADD TASK"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/textViewTotalTasksLabel"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toStartOf="@+id/buttonUploadTask"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/buttonUploadTask"
+        android:layout_width="173dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="30dp"
+        android:text="UPLOAD TASK"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/textViewTotalTasksLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonAddTask" />
 
     <EditText
         android:id="@+id/editTextTaskTitle"
